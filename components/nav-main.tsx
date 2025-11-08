@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+
 import { IconCirclePlusFilled, IconChevronRight, type Icon } from "@tabler/icons-react"
 
 import {
@@ -13,9 +14,12 @@ import {
   SidebarMenuSubItem,
   SidebarMenuSubButton,
 } from "@/components/ui/sidebar"
+
 import { cn } from "@/lib/utils"
 
 import Link from "next/link"
+
+import { usePathname } from "next/navigation"
 
 export function NavMain({
   items,
@@ -31,6 +35,7 @@ export function NavMain({
   }[]
 }) {
   const [openItems, setOpenItems] = React.useState<Set<string>>(new Set())
+  const pathname = usePathname()
 
   const toggleItem = (title: string) => {
     setOpenItems((prev) => {
@@ -53,6 +58,7 @@ export function NavMain({
               tooltip="Dashboard"
               className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
               asChild
+              isActive={pathname === "/dashboard"}
             >
               <Link href="/dashboard">
                 <IconCirclePlusFilled />
@@ -64,7 +70,8 @@ export function NavMain({
         <SidebarMenu>
           {items.map((item) => {
             const hasSubmenu = item.items && item.items.length > 0
-            const isOpen = openItems.has(item.title)
+            const sectionActive = pathname.startsWith(item.url)
+            const isOpen = openItems.has(item.title) || (hasSubmenu && sectionActive)
 
             return (
               <SidebarMenuItem key={item.title}>
@@ -74,6 +81,7 @@ export function NavMain({
                       tooltip={item.title}
                       onClick={() => toggleItem(item.title)}
                       data-state={isOpen ? "open" : "closed"}
+                      isActive={sectionActive}
                     >
                       {item.icon && <item.icon />}
                       <span>{item.title}</span>
@@ -88,7 +96,7 @@ export function NavMain({
                       <SidebarMenuSub>
                         {item.items?.map((subItem) => (
                           <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton asChild>
+                            <SidebarMenuSubButton asChild isActive={pathname === subItem.url}>
                               <Link href={subItem.url}>
                                 <span>{subItem.title}</span>
                               </Link>
@@ -99,7 +107,7 @@ export function NavMain({
                     )}
                   </>
                 ) : (
-                  <SidebarMenuButton tooltip={item.title} asChild>
+                  <SidebarMenuButton tooltip={item.title} asChild isActive={pathname.startsWith(item.url)}>
                     <Link href={item.url}>
                       {item.icon && <item.icon />}
                       <span>{item.title}</span>
