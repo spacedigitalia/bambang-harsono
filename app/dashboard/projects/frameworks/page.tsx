@@ -3,10 +3,10 @@ export const metadata = {
     description: "Modern dashboard for Projects Framework",
 }
 
-import ProjectsLayout from '@/components/dashboard/projects/projects/ProjectsLayout'
+import FrameworkLayout from '@/components/dashboard/projects/Framework/FrameworkLayout'
 
 export default function page() {
     return (
-        <ProjectsLayout />
+        <FrameworkLayout />
     )
 }

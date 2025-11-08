@@ -55,6 +55,20 @@ const data = {
       title: "Projects",
       url: "/dashboard/projects",
       icon: IconFolder,
+      items: [
+        {
+          title: "All Projects",
+          url: "/dashboard/projects",
+        },
+        {
+          title: "Categories",
+          url: "/dashboard/projects/categories",
+        },
+        {
+          title: "Frameworks",
+          url: "/dashboard/projects/frameworks",
+        },
+      ],
     },
     {
       title: "Contacts",

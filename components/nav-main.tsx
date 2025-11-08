@@ -1,6 +1,7 @@
 "use client"
 
-import { IconCirclePlusFilled, type Icon } from "@tabler/icons-react"
+import * as React from "react"
+import { IconCirclePlusFilled, IconChevronRight, type Icon } from "@tabler/icons-react"
 
 import {
   SidebarGroup,
@@ -8,7 +9,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
 } from "@/components/ui/sidebar"
+import { cn } from "@/lib/utils"
 
 import Link from "next/link"
 
@@ -19,8 +24,26 @@ export function NavMain({
     title: string
     url: string
     icon?: Icon
+    items?: {
+      title: string
+      url: string
+    }[]
   }[]
 }) {
+  const [openItems, setOpenItems] = React.useState<Set<string>>(new Set())
+
+  const toggleItem = (title: string) => {
+    setOpenItems((prev) => {
+      const newSet = new Set(prev)
+      if (newSet.has(title)) {
+        newSet.delete(title)
+      } else {
+        newSet.add(title)
+      }
+      return newSet
+    })
+  }
+
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
@@ -39,15 +62,53 @@ export function NavMain({
           </SidebarMenuItem>
         </SidebarMenu>
         <SidebarMenu>
-          {items.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton tooltip={item.title} asChild>
-                <Link href={item.url}>
-                  {item.icon && <item.icon />}
-                  <span>{item.title}</span> </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
+          {items.map((item) => {
+            const hasSubmenu = item.items && item.items.length > 0
+            const isOpen = openItems.has(item.title)
+
+            return (
+              <SidebarMenuItem key={item.title}>
+                {hasSubmenu ? (
+                  <>
+                    <SidebarMenuButton
+                      tooltip={item.title}
+                      onClick={() => toggleItem(item.title)}
+                      data-state={isOpen ? "open" : "closed"}
+                    >
+                      {item.icon && <item.icon />}
+                      <span>{item.title}</span>
+                      <IconChevronRight
+                        className={cn(
+                          "ml-auto transition-transform duration-200",
+                          isOpen && "rotate-90"
+                        )}
+                      />
+                    </SidebarMenuButton>
+                    {isOpen && (
+                      <SidebarMenuSub>
+                        {item.items?.map((subItem) => (
+                          <SidebarMenuSubItem key={subItem.title}>
+                            <SidebarMenuSubButton asChild>
+                              <Link href={subItem.url}>
+                                <span>{subItem.title}</span>
+                              </Link>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        ))}
+                      </SidebarMenuSub>
+                    )}
+                  </>
+                ) : (
+                  <SidebarMenuButton tooltip={item.title} asChild>
+                    <Link href={item.url}>
+                      {item.icon && <item.icon />}
+                      <span>{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                )}
+              </SidebarMenuItem>
+            )
+          })}
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>

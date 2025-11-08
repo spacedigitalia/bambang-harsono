@@ -8,6 +8,8 @@ import { AuthProvider } from "@/utils/context/AuthContext";
 
 import { ThemeProvider } from "@/utils/context/ThemaContext"
 
+import { Toaster } from 'sonner'
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -40,6 +42,16 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <AuthProvider>
+            <Toaster
+              position="top-center"
+              toastOptions={{
+                duration: 3000,
+                style: {
+                  background: '#333',
+                  color: '#fff',
+                },
+              }}
+            />
             {children}
           </AuthProvider>
         </ThemeProvider>
