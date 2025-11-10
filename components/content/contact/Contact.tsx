@@ -107,15 +107,15 @@ function ContactFormSection() {
                 <motion.ul className="space-y-2 text-primary" variants={listContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
                     <motion.li className="flex items-center gap-2" variants={listItem}>
                         <IconBrandTiktok size={18} />
-                        <a href="https://www.tiktok.com/@yourhandle" className="hover:underline" target="_blank" rel="noopener noreferrer">Kunjungi TikTok</a>
+                        <a href="https://www.tiktok.com/@yeahitsbams?_r=1&_t=ZS-91HRaxSI5hw" className="hover:underline" target="_blank" rel="noopener noreferrer">Kunjungi TikTok</a>
                     </motion.li>
                     <motion.li className="flex items-center gap-2" variants={listItem}>
                         <IconBrandInstagram size={18} />
-                        <a href="https://instagram.com/yourhandle" className="hover:underline" target="_blank" rel="noopener noreferrer">Ikuti Instagram</a>
+                        <a href="https://www.instagram.com/yurspace22?igsh=MWE5OG9qZHcxdXRqZw==" className="hover:underline" target="_blank" rel="noopener noreferrer">Ikuti Instagram</a>
                     </motion.li>
                     <motion.li className="flex items-center gap-2" variants={listItem}>
                         <IconMail size={18} />
-                        <a href="mailto:you@company.com" className="hover:underline">Kirim Email</a>
+                        <a href="mailto:bambangharsono1707@gmail.com" className="hover:underline">Kirim Email</a>
                     </motion.li>
                 </motion.ul>
 

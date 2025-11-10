@@ -30,7 +30,10 @@ import {
     AlertCircle,
 } from 'lucide-react'
 
+import { useAuth } from '@/utils/context/AuthContext'
+
 export default function ContactPage() {
+    const { user } = useAuth()
     const [contacts, setContacts] = useState<Contact[]>([])
     const [loading, setLoading] = useState(true)
     const [selectedContact, setSelectedContact] = useState<Contact | null>(null)
@@ -53,6 +56,13 @@ export default function ContactPage() {
             setReplyData(prev => ({ ...prev, adminEmail: savedEmail }))
         }
     }, [])
+
+    // Override with logged-in user's email when available
+    useEffect(() => {
+        if (user?.email) {
+            setReplyData(prev => ({ ...prev, adminEmail: user.email }))
+        }
+    }, [user])
 
     const fetchContacts = async () => {
         try {

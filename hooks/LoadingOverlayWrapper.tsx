@@ -140,11 +140,9 @@ function MangcodingStyleSplash({
                 <CloudLinesCanvas className="w-full h-full" />
             </div>
             <div className="relative z-10 flex flex-col items-center space-y-8 w-screen px-4">
-                {/* Logo/Brand Section */}
                 <motion.div
                     className="text-center"
                 >
-                    {/* Airplane Image moving left-to-right */}
                     <motion.div
                         className="w-screen overflow-hidden mb-3 h-[120px] relative"
                     >
@@ -160,7 +158,7 @@ function MangcodingStyleSplash({
                                 width={300}
                                 height={150}
                                 priority
-                                className="opacity-90 select-none"
+                                className="opacity-90 select-none w-full h-full object-contain"
                             />
                         </motion.div>
                     </motion.div>

@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 
-import { IconBrandInstagram, IconBrandTiktokFilled, IconBrandLinkedinFilled, IconBrandGithub } from "@tabler/icons-react"
+import { IconBrandInstagram, IconBrandTiktokFilled, IconBrandLinkedinFilled, IconBrandGithub, IconBrandWhatsapp } from "@tabler/icons-react"
 
 import { motion, type Variants } from 'framer-motion'
 
@@ -14,20 +14,24 @@ import { useLoading } from '@/utils/context/LoadingContext'
 
 const socialLink = [
     {
-        href: "https://www.instagram.com/",
+        href: "https://www.instagram.com/yurspace22?igsh=MWE5OG9qZHcxdXRqZw==",
         icon: IconBrandInstagram,
     },
     {
-        href: "https://www.tiktok.com/",
+        href: "https://www.tiktok.com/@yeahitsbams?_r=1&_t=ZS-91HRaxSI5hw",
         icon: IconBrandTiktokFilled,
     },
     {
-        href: "https://www.linkedin.com/",
+        href: "https://www.linkedin.com/in/bambang-harsono-31981b29b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         icon: IconBrandLinkedinFilled,
     },
     {
-        href: "https://www.github.com/",
+        href: "https://gist.github.com/bambangharsono",
         icon: IconBrandGithub,
+    },
+    {
+        href: "https://wa.me/message/HVPSQOQGHTHVM1",
+        icon: IconBrandWhatsapp,
     },
 ]
 
@@ -85,7 +89,7 @@ export default function Home({ homeData }: { homeData: HomeContent[] }) {
                                 content?.links?.map((link, idx) => (
                                     <motion.div key={link.href} variants={item} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                                         <Link href={link.href}>
-                                            <Button size="lg" variant={idx === 1 ? "ghost" : "default"} className="gap-2">
+                                            <Button size="lg" variant={idx === 1 ? "ghost" : "default"} className="gap-2 cursor-pointer">
                                                 <span className="inline-flex items-center">{link.label}</span>
                                             </Button>
                                         </Link>
@@ -129,7 +133,7 @@ export default function Home({ homeData }: { homeData: HomeContent[] }) {
                                 return (
                                     <motion.div key={idx} variants={item} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                                         <Link href={s.href} target="_blank" rel="noopener noreferrer">
-                                            <Button size="default" className="gap-2 bg-card text-card-foreground hover:bg-card/90">
+                                            <Button size="default" className="gap-2 bg-card cursor-pointer text-card-foreground hover:bg-card/90">
                                                 <s.icon className="w-6 h-6" />
                                             </Button>
                                         </Link>
