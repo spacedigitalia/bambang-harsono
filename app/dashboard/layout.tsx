@@ -56,7 +56,7 @@ export default function DashboardLayout({
             <AppSidebar variant="inset" />
             <SidebarInset>
                 <SiteHeader />
-                <main className='py-4 px-4'>
+                <main className='py-2 px-2 md:py-4 md:px-4'>
                     {children}
                 </main>
             </SidebarInset>

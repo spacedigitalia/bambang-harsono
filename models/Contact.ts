@@ -52,6 +52,8 @@ contactSchema.pre("save", function (next) {
   next();
 });
 
-const Contact = mongoose.model("Contact", contactSchema);
+const modelName = process.env.NEXT_PUBLIC_CONTACTS as string;
+const Contact =
+  mongoose.models[modelName] || mongoose.model(modelName, contactSchema);
 
 export default Contact;

@@ -12,21 +12,24 @@ import {
 } from "@/components/ui/card"
 
 import { fetchProjects } from "@/utils/fetching/FetchProjects"
-import { fetchSkillsContents } from "@/utils/fetching/FetchTechSkills"
-import { fetchHomeContents } from "@/utils/fetching/FetchHome"
+
+import { fetchTechSkillsContents } from "@/utils/fetching/FetchTechSkills"
+
+import { fetchGalleryContents } from "@/utils/fetching/FetchGallery"
+
 import { fetchAchievementContents } from "@/utils/fetching/FetchAchievement"
 
 export async function SectionCards() {
-  const [projectsData, skillsData, homeData, achievementsData] = await Promise.all([
+  const [projectsData, skillsData, galleryData, achievementsData] = await Promise.all([
     fetchProjects().catch(() => [] as projects[]),
-    fetchSkillsContents().catch(() => [] as SkillContent[]),
-    fetchHomeContents().catch(() => [] as HomeContent[]),
+    fetchTechSkillsContents().catch(() => [] as TechSkill[]),
+    fetchGalleryContents().catch(() => [] as Gallery[]),
     fetchAchievementContents().catch(() => [] as Achievement[]),
   ])
 
   const projects = projectsData.length
   const skills = skillsData.length
-  const home = homeData.length
+  const gallery = galleryData.length
   const achievements = achievementsData.length
 
   return (
@@ -74,22 +77,22 @@ export async function SectionCards() {
       </Card>
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription>Home</CardDescription>
+          <CardDescription>Gallery</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            {home}
+            {gallery}
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
               <IconTrendingUp />
-              {home}
+              {gallery}
             </Badge>
           </CardAction>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
-            Total home entries <IconTrendingUp className="size-4" />
+            Total gallery entries <IconTrendingUp className="size-4" />
           </div>
-          <div className="text-muted-foreground">Jumlah data home</div>
+          <div className="text-muted-foreground">Jumlah data gallery</div>
         </CardFooter>
       </Card>
       <Card className="@container/card">
@@ -115,3 +118,4 @@ export async function SectionCards() {
     </div>
   )
 }
+

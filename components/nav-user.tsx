@@ -3,7 +3,6 @@
 import {
   IconDotsVertical,
   IconLogout,
-  IconUserCircle,
 } from "@tabler/icons-react"
 
 import {
@@ -14,14 +13,10 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-
-import { useRouter } from "next/navigation"
 
 import {
   SidebarMenu,
@@ -33,17 +28,12 @@ import {
 import { useAuth } from "@/utils/context/AuthContext"
 
 export function NavUser() {
-  const router = useRouter()
   const { isMobile } = useSidebar()
   const { user, signOut } = useAuth()
 
   const displayName = user ? `${user.firstName ?? ""} ${user.lastName ?? ""}`.trim() || user.email : "Guest"
   const email = user?.email ?? ""
   const initials = (user ? `${user.firstName?.[0] ?? ""}${user.lastName?.[0] ?? ""}` : "GU").toUpperCase()
-
-  const handleSettings = () => {
-    router.push("/dashboard/settings")
-  }
 
   return (
     <SidebarMenu>
@@ -85,14 +75,6 @@ export function NavUser() {
                 </div>
               </div>
             </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem onClick={handleSettings}>
-                <IconUserCircle />
-                Account
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => signOut()}>
               <IconLogout />
               Log out

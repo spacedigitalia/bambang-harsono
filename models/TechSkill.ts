@@ -16,8 +16,8 @@ const skillSchema = new mongoose.Schema(
   }
 );
 
+const modelName = process.env.NEXT_PUBLIC_TECH_SKILL as string;
 const Skill =
-  mongoose.models.Skill ||
-  mongoose.model(process.env.NEXT_PUBLIC_TECH_SKILL as string, skillSchema);
+  mongoose.models[modelName] || mongoose.model(modelName, skillSchema);
 
 export default Skill;
