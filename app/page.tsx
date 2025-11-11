@@ -1,13 +1,5 @@
 import { Fragment } from 'react'
 
-import { fetchHomeContents } from '@/utils/fetching/FetchHome';
-
-import { fetchTechSkillsContents, fetchSkillsContents } from '@/utils/fetching/FetchTechSkills';
-
-import { fetchProjects } from '@/utils/fetching/FetchProjects';
-
-import { fetchAchievementContents } from '@/utils/fetching/FetchAchievement';
-
 import Home from '@/components/content/home/Home';
 
 import Skills from '@/components/content/skills/Skills';
@@ -18,27 +10,31 @@ import Achviement from '@/components/content/achvievement/Achviement';
 
 import Gallery from '@/components/content/gallery/Gallery';
 
-import Contact from '@/components/content/contact/Contact';
+import { fetchHomeContents } from '@/utils/fetching/FetchHome';
 
-export const dynamic = 'force-dynamic'
+import { fetchTechSkillsContents, fetchSkillsContents } from "@/utils/fetching/FetchTechSkills";
 
-export const revalidate = 0
+import { fetchProjects } from "@/utils/fetching/FetchProjects";
+
+import { fetchGalleryContents } from "@/utils/fetching/FetchGallery";
+
+import { fetchAchievementContents } from "@/utils/fetching/FetchAchievement";
 
 export default async function HomePage() {
-  const homeData = await fetchHomeContents().catch(() => [] as HomeContent[]);
-  const techSkillData = await fetchTechSkillsContents().catch(() => [] as TechSkill[]);
-  const skillData = await fetchSkillsContents().catch(() => [] as SkillContent[]);
-  const projectData = await fetchProjects().catch(() => [] as projects[]);
-  const achievementData = await fetchAchievementContents().catch(() => [] as Achievement[]);
+  const homeData = await fetchHomeContents();
+  const skillsData = await fetchTechSkillsContents();
+  const skillsContentData = await fetchSkillsContents();
+  const achievementData = await fetchAchievementContents();
+  const projectsData = await fetchProjects();
+  const galleryData = await fetchGalleryContents();
 
   return (
     <Fragment>
       <Home homeData={homeData} />
-      <Skills techSkillsData={techSkillData} skillsData={skillData} />
+      <Skills techSkillsData={skillsData} skillsData={skillsContentData} />
       <Achviement achievementData={achievementData} />
-      <Projects projectsData={projectData} />
-      <Gallery />
-      <Contact />
+      <Projects projectsData={projectsData} />
+      <Gallery galleryData={galleryData} />
     </Fragment>
   );
 }

@@ -27,7 +27,7 @@ function buildUrl(baseUrl: string, path: string): string {
 }
 
 function getBaseUrl(req: NextRequest): string {
-  const envUrl = process.env.NEXT_PUBLIC_URL;
+  const envUrl = process.env.NEXT_PUBLIC_SITE_URL;
   if (envUrl && envUrl.trim().length > 0) return envUrl;
   const host =
     req.headers.get("x-forwarded-host") ||

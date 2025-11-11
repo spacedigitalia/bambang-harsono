@@ -1,4 +1,4 @@
-const API_URL = `${process.env.NEXT_PUBLIC_URL}/api/projects`;
+const API_URL = `${process.env.NEXT_PUBLIC_SITE_URL}/api/projects`;
 
 export const fetchProjects = async (): Promise<projects[]> => {
   try {
@@ -17,8 +17,10 @@ export const fetchProjects = async (): Promise<projects[]> => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching projects:", error);
-    throw error;
+    if (process.env.NODE_ENV !== "production") {
+      console.error("Error fetching projects:", error);
+    }
+    return [] as unknown as projects[];
   }
 };
 
@@ -43,7 +45,9 @@ export const fetchProjectBySlug = async (
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching projects details:", error);
-    throw error;
+    if (process.env.NODE_ENV !== "production") {
+      console.error("Error fetching projects details:", error);
+    }
+    return null;
   }
 };

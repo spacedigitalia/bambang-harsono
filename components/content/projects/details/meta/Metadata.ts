@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-const API_URL = `${process.env.NEXT_PUBLIC_URL}/api/projects`;
+const API_URL = `${process.env.NEXT_PUBLIC_SITE_URL}/api/projects`;
 
 export async function getProducts(
   slug: string
@@ -33,7 +33,7 @@ export async function generateMetadata({
   try {
     const resolvedParams = await params;
     const project = await getProducts(resolvedParams.slug);
-    const BASE_URL = process.env.NEXT_PUBLIC_URL || "";
+    const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "";
 
     if (!project) {
       return {

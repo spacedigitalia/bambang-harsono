@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_URL as string;
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL as string;
 
 export const viewport = {
   width: "device-width",

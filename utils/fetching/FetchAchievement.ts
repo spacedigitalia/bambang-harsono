@@ -1,4 +1,4 @@
-const API_URL = `${process.env.NEXT_PUBLIC_URL}/api/achievements`;
+const API_URL = `${process.env.NEXT_PUBLIC_SITE_URL}/api/achievements`;
 
 export const fetchAchievementContents = async (): Promise<Achievement[]> => {
   try {
@@ -19,7 +19,9 @@ export const fetchAchievementContents = async (): Promise<Achievement[]> => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching achievement contents:", error);
-    throw error;
+    if (process.env.NODE_ENV !== "production") {
+      console.error("Error fetching achievement contents:", error);
+    }
+    return [] as unknown as Achievement[];
   }
 };
