@@ -111,3 +111,4 @@ Pratinjau tampilan desktop:
 
 - Gambar pratinjau berada di `public/dekstop.png`. Jika ingin mengganti, cukup timpa file tersebut.
 - Direktori `.next`, `node_modules`, dan `.git` diabaikan pada struktur ringkas di atas.
+# bambang-harsono
