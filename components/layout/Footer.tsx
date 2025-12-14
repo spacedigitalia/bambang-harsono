@@ -9,8 +9,8 @@ export default function Footer() {
             <div className="container mx-auto px-4 border-t">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 py-6">
                     <div className="flex items-center gap-3">
-                        <Link href="/" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black font-semibold dark:bg-zinc-100 dark:text-zinc-900">N</Link>
-                        <span className="text-sm text-zinc-400">Portfolio</span>
+                        <Link href="/" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black font-semibold dark:bg-zinc-100 dark:text-zinc-900">BH</Link>
+                        <span className="text-sm text-zinc-400">Bambang Harsono</span>
                     </div>
 
                     <nav className="flex items-center gap-6 text-sm md:text-base">
